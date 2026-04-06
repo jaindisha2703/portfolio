@@ -1,0 +1,1676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Disha Jain — Product Experience Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FAFAF7;
+    --dark: #0D0D0D;
+    --ink: #1A1A1A;
+    --purple: #C4B5FD;
+    --purple-deep: #8B5CF6;
+    --purple-soft: #EDE9FE;
+    --grey: #6B6B6B;
+    --border: #E8E6E0;
+    --card-hover-shadow: 0 16px 48px rgba(0,0,0,0.10);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Space Grotesk', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 48px;
+    height: 64px;
+    background: rgba(250,250,247,0.88);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    transition: background 0.3s;
+  }
+  nav.dark-nav {
+    background: rgba(13,13,13,0.88);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .nav-name {
+    font-family: 'EB Garamond', serif;
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    cursor: pointer;
+    color: var(--ink);
+    transition: color 0.3s;
+  }
+  nav.dark-nav .nav-name { color: #fff; }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    color: var(--grey);
+    transition: color 0.2s;
+    cursor: pointer;
+  }
+  nav.dark-nav .nav-links a { color: rgba(255,255,255,0.5); }
+  .nav-links a:hover, .nav-links a.active { color: var(--ink); }
+  nav.dark-nav .nav-links a:hover, nav.dark-nav .nav-links a.active { color: #fff; }
+
+  /* ─── SIDE DOTS ─── */
+  .side-dots {
+    position: fixed; right: 28px; top: 50%; transform: translateY(-50%);
+    z-index: 998; display: flex; flex-direction: column; gap: 10px;
+  }
+  .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--border); cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+  }
+  .dot.active { background: var(--purple-deep); transform: scale(1.5); }
+
+  /* ─── SECTIONS ─── */
+  .page { display: none; }
+  .page.active { display: block; }
+
+  /* ─── HERO ─── */
+  #hero {
+    min-height: 100vh; background: var(--dark);
+    display: flex; flex-direction: column;
+    padding-top: 64px;
+    position: relative; overflow: hidden;
+  }
+  .hero-grid {
+    flex: 1; display: flex; flex-direction: column;
+    justify-content: center;
+    max-width: 1100px; width: 100%; margin: 0 auto;
+    padding: 0 48px;
+    padding-top: 80px; padding-bottom: 80px;
+  }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(196,181,253,0.12);
+    border: 1px solid rgba(196,181,253,0.25);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--purple);
+    margin-bottom: 40px;
+    width: fit-content;
+  }
+  .hero-tag span { width: 6px; height: 6px; border-radius: 50%; background: var(--purple); display: block; }
+  .hero-h1 {
+    font-family: 'EB Garamond', serif;
+    font-size: clamp(56px, 7vw, 96px);
+    font-weight: 400;
+    line-height: 1.04;
+    letter-spacing: -0.025em;
+    color: #fff;
+    margin-bottom: 32px;
+  }
+  .hero-h1 em { font-style: italic; color: var(--purple); }
+  .hero-sub {
+    font-size: 20px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.55);
+    max-width: 600px;
+    margin-bottom: 56px;
+    font-weight: 400;
+  }
+  .hero-cta {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--purple);
+    color: var(--dark);
+    border-radius: 100px;
+    padding: 14px 28px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: background 0.2s, transform 0.2s;
+    text-decoration: none;
+    width: fit-content;
+  }
+  .hero-cta:hover { background: #d4c5ff; transform: translateY(-2px); }
+  .hero-scroll {
+    font-size: 13px;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 0.06em;
+    margin-top: 80px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .hero-scroll::before {
+    content: ''; display: block;
+    width: 40px; height: 1px; background: rgba(255,255,255,0.15);
+  }
+  /* Hero bg decoration */
+  .hero-bg-circle {
+    position: absolute; border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+  }
+  .hbc1 { width: 600px; height: 600px; right: -100px; top: -100px; background: rgba(139,92,246,0.08); }
+  .hbc2 { width: 400px; height: 400px; left: 10%; bottom: 0; background: rgba(196,181,253,0.05); }
+
+  /* About strip */
+  .about-strip {
+    background: var(--cream);
+    padding: 120px 48px;
+  }
+  .about-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+  .about-label {
+    font-size: 12px; font-weight: 600;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--grey); margin-bottom: 24px;
+  }
+  .about-head {
+    font-family: 'EB Garamond', serif;
+    font-size: 40px; line-height: 1.15; letter-spacing: -0.015em;
+    font-weight: 400; color: var(--ink);
+  }
+  .about-head em { font-style: italic; }
+  .about-body {
+    font-size: 17px; line-height: 1.75;
+    color: #444; margin-bottom: 20px;
+  }
+  .about-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 32px; }
+  .chip {
+    background: var(--purple-soft);
+    color: var(--purple-deep);
+    border-radius: 100px;
+    padding: 6px 14px;
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  /* ─── WORK PAGE ─── */
+  .section-wrap {
+    min-height: 100vh;
+    padding-top: 64px;
+  }
+  .section-head {
+    padding: 80px 48px 60px;
+    max-width: 1100px; margin: 0 auto;
+  }
+  .section-label {
+    font-size: 12px; font-weight: 600;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--grey); margin-bottom: 16px;
+    display: block;
+  }
+  .section-title {
+    font-family: 'EB Garamond', serif;
+    font-size: clamp(40px, 5vw, 64px);
+    font-weight: 400; line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .section-title em { font-style: italic; }
+
+  /* Cards grid */
+  .cards-grid {
+    max-width: 1100px; margin: 0 auto;
+    padding: 0 48px 120px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  .cards-grid.triple { grid-template-columns: repeat(3, 1fr); }
+
+  .card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .card:hover { transform: translateY(-5px); box-shadow: var(--card-hover-shadow); }
+  .card-cover {
+    width: 100%; aspect-ratio: 16/9;
+    overflow: hidden; position: relative;
+  }
+  .card-cover svg { width: 100%; height: 100%; display: block; }
+  .card-body { padding: 24px 28px 28px; }
+  .card-tag {
+    display: inline-block;
+    background: var(--purple-soft);
+    color: var(--purple-deep);
+    border-radius: 100px;
+    padding: 4px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+  }
+  .card-tag.grey {
+    background: #F3F3F0;
+    color: var(--grey);
+  }
+  .card-title {
+    font-family: 'EB Garamond', serif;
+    font-size: 24px; line-height: 1.25;
+    font-weight: 500; letter-spacing: -0.01em;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+  .card-desc {
+    font-size: 15px; line-height: 1.6;
+    color: var(--grey);
+    margin-bottom: 20px;
+  }
+  .card-arrow {
+    font-size: 14px; font-weight: 600;
+    color: var(--purple-deep);
+    display: flex; align-items: center; gap: 6px;
+  }
+  .card-arrow::after { content: '→'; }
+
+  /* ─── CASE STUDY PAGE ─── */
+  .cs-page { display: none; min-height: 100vh; padding-top: 64px; }
+  .cs-page.open { display: block; }
+
+  .breadcrumb {
+    padding: 24px 48px;
+    max-width: 1100px; margin: 0 auto;
+    display: flex; align-items: center; gap: 12px;
+    font-size: 13px; color: var(--grey);
+  }
+  .breadcrumb span { cursor: pointer; }
+  .breadcrumb span:hover { color: var(--ink); }
+  .breadcrumb .sep { color: var(--border); }
+  .breadcrumb .current { color: var(--ink); font-weight: 500; }
+
+  .cs-hero {
+    background: var(--dark);
+    padding: 80px 48px 100px;
+  }
+  .cs-hero-inner { max-width: 1100px; margin: 0 auto; }
+  .cs-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(196,181,253,0.12);
+    border: 1px solid rgba(196,181,253,0.2);
+    border-radius: 100px;
+    padding: 5px 14px;
+    font-size: 12px; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--purple);
+    margin-bottom: 32px;
+    width: fit-content;
+  }
+  .cs-h1 {
+    font-family: 'EB Garamond', serif;
+    font-size: clamp(40px, 5vw, 72px);
+    font-weight: 400; line-height: 1.08;
+    letter-spacing: -0.025em; color: #fff;
+    max-width: 800px; margin-bottom: 28px;
+  }
+  .cs-h1 em { font-style: italic; color: var(--purple); }
+  .cs-bluf {
+    font-size: 18px; line-height: 1.7;
+    color: rgba(255,255,255,0.55);
+    max-width: 720px; margin-bottom: 48px;
+  }
+  .cs-meta {
+    display: flex; gap: 48px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 32px;
+  }
+  .cs-meta-item { display: flex; flex-direction: column; gap: 6px; }
+  .cs-meta-label { font-size: 12px; color: rgba(255,255,255,0.3); letter-spacing: 0.1em; text-transform: uppercase; }
+  .cs-meta-val { font-size: 15px; font-weight: 500; color: rgba(255,255,255,0.8); }
+
+  /* CS body */
+  .cs-body {
+    max-width: 800px; margin: 0 auto;
+    padding: 80px 48px 120px;
+  }
+  .cs-section { margin-bottom: 72px; }
+  .cs-section-num {
+    font-size: 12px; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--purple-deep); margin-bottom: 16px;
+  }
+  .cs-section-head {
+    font-family: 'EB Garamond', serif;
+    font-size: 32px; line-height: 1.2;
+    font-weight: 500; letter-spacing: -0.01em;
+    color: var(--ink); margin-bottom: 20px;
+  }
+  .cs-section-head em { font-style: italic; }
+  .cs-p {
+    font-size: 17px; line-height: 1.78;
+    color: #333; margin-bottom: 20px;
+  }
+  .cs-quote {
+    border-left: 3px solid var(--purple);
+    padding: 20px 28px;
+    margin: 32px 0;
+    background: var(--purple-soft);
+    border-radius: 0 12px 12px 0;
+  }
+  .cs-quote p {
+    font-family: 'EB Garamond', serif;
+    font-size: 22px; line-height: 1.5; font-style: italic;
+    color: var(--ink); margin-bottom: 8px;
+  }
+  .cs-quote cite {
+    font-size: 13px; color: var(--grey); font-style: normal;
+  }
+  .cs-callout-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 16px; margin: 32px 0;
+  }
+  .cs-callout {
+    background: #fff; border: 1px solid var(--border);
+    border-radius: 14px; padding: 20px;
+    text-align: center;
+  }
+  .cs-callout-num {
+    font-family: 'EB Garamond', serif;
+    font-size: 36px; font-weight: 500;
+    color: var(--purple-deep); line-height: 1;
+    margin-bottom: 8px;
+  }
+  .cs-callout-label { font-size: 13px; color: var(--grey); line-height: 1.4; }
+  .cs-visual {
+    border-radius: 16px; overflow: hidden;
+    margin: 32px 0;
+    border: 1px solid var(--border);
+  }
+  .cs-visual svg { width: 100%; display: block; }
+  .cs-caption {
+    font-size: 13px; color: var(--grey);
+    text-align: center; margin-top: -20px; margin-bottom: 32px;
+    font-style: italic;
+  }
+  .cs-finding {
+    background: #fff; border: 1px solid var(--border);
+    border-radius: 14px; padding: 24px 28px;
+    margin: 16px 0;
+    display: flex; gap: 20px; align-items: flex-start;
+  }
+  .cs-finding-badge {
+    border-radius: 100px; padding: 4px 12px;
+    font-size: 12px; font-weight: 700;
+    letter-spacing: 0.04em; text-transform: uppercase;
+    white-space: nowrap; flex-shrink: 0;
+  }
+  .badge-catastrophic { background: #FEE2E2; color: #DC2626; }
+  .badge-major { background: #FEF3C7; color: #D97706; }
+  .badge-minor { background: #DBEAFE; color: #2563EB; }
+  .cs-finding-text { font-size: 15px; line-height: 1.6; color: var(--ink); }
+  .cs-finding-title { font-weight: 600; margin-bottom: 4px; }
+
+  .cs-next {
+    background: var(--dark); border-radius: 20px;
+    padding: 48px; margin-top: 80px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .cs-next p { font-size: 13px; color: rgba(255,255,255,0.3); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
+  .cs-next h3 {
+    font-family: 'EB Garamond', serif;
+    font-size: 28px; color: #fff; font-weight: 400;
+  }
+  .btn-outline {
+    border: 1px solid rgba(255,255,255,0.15);
+    background: transparent; color: rgba(255,255,255,0.7);
+    border-radius: 100px; padding: 12px 24px;
+    font-size: 14px; font-weight: 500;
+    cursor: pointer; transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .btn-outline:hover { background: rgba(255,255,255,0.08); color: #fff; }
+
+  /* Concept cards */
+  .concept-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 32px 0; }
+  .concept-card {
+    border: 1px solid var(--border);
+    border-radius: 14px; padding: 24px;
+    background: #fff;
+  }
+  .concept-card h4 {
+    font-size: 14px; font-weight: 700;
+    letter-spacing: 0.04em; text-transform: uppercase;
+    color: var(--purple-deep); margin-bottom: 12px;
+  }
+  .concept-card p { font-size: 14px; line-height: 1.6; color: #444; }
+
+  /* ─── AI PLAYGROUND ─── */
+  .playground-section { padding-top: 64px; min-height: 100vh; }
+
+  /* ─── RESUME ─── */
+  .resume-section {
+    min-height: 100vh; padding-top: 64px;
+    background: var(--cream);
+  }
+  .resume-inner {
+    max-width: 900px; margin: 0 auto;
+    padding: 80px 48px 120px;
+  }
+  .resume-row {
+    display: flex; gap: 60px; margin-bottom: 56px;
+  }
+  .resume-col-label {
+    width: 180px; flex-shrink: 0;
+    font-size: 12px; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--grey); padding-top: 4px;
+  }
+  .resume-col-body { flex: 1; }
+  .resume-entry { margin-bottom: 28px; }
+  .resume-entry h3 {
+    font-size: 17px; font-weight: 600; color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .resume-entry .meta {
+    font-size: 14px; color: var(--grey); margin-bottom: 10px;
+  }
+  .resume-entry ul {
+    list-style: none; padding: 0;
+  }
+  .resume-entry ul li {
+    font-size: 15px; line-height: 1.6; color: #444;
+    padding-left: 16px; position: relative; margin-bottom: 4px;
+  }
+  .resume-entry ul li::before {
+    content: '–'; position: absolute; left: 0; color: var(--grey);
+  }
+  .skills-wrap { display: flex; flex-wrap: wrap; gap: 8px; }
+  .skill-pill {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 7px 16px;
+    font-size: 14px;
+    color: var(--ink);
+  }
+
+  /* ─── TRANSITIONS ─── */
+  .fade-in { animation: fadeUp 0.5s ease forwards; }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--dark);
+    padding: 48px;
+    text-align: center;
+  }
+  footer p {
+    font-size: 14px; color: rgba(255,255,255,0.3);
+  }
+  footer strong { color: rgba(255,255,255,0.6); }
+  .footer-links { display: flex; justify-content: center; gap: 32px; margin-bottom: 24px; }
+  .footer-links a {
+    font-size: 14px; color: rgba(255,255,255,0.4);
+    text-decoration: none; transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--purple); }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    nav { padding: 0 24px; }
+    .cards-grid, .cards-grid.triple { grid-template-columns: 1fr; }
+    .about-inner { grid-template-columns: 1fr; gap: 40px; }
+    .cs-meta { flex-wrap: wrap; gap: 24px; }
+    .cs-callout-grid { grid-template-columns: repeat(2, 1fr); }
+    .concept-grid { grid-template-columns: 1fr; }
+    .breadcrumb, .section-head, .cs-body, .cs-hero, .cards-grid, .resume-inner { padding-left: 24px; padding-right: 24px; }
+    .cs-next { flex-direction: column; gap: 24px; }
+    .resume-row { flex-direction: column; gap: 16px; }
+    .resume-col-label { width: auto; }
+    .side-dots { display: none; }
+    .hero-grid { padding: 0 24px; padding-top: 60px; }
+    .about-strip { padding: 80px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<nav id="main-nav" class="dark-nav">
+  <div class="nav-name" onclick="goHome()">Disha Jain</div>
+  <ul class="nav-links">
+    <li><a onclick="showPage('work')" id="nav-work">Work</a></li>
+    <li><a onclick="showPage('playground')" id="nav-playground">AI Playground</a></li>
+    <li><a onclick="showPage('resume')" id="nav-resume">Resume</a></li>
+  </ul>
+</nav>
+
+<!-- ─── SIDE DOTS ─── -->
+<div class="side-dots" id="side-dots"></div>
+
+<!-- ══════════════════════════════════ HOME PAGE ══════════════════════════════════ -->
+<div id="page-home" class="page active">
+  <!-- Hero -->
+  <section id="hero">
+    <div class="hero-bg-circle hbc1"></div>
+    <div class="hero-bg-circle hbc2"></div>
+    <div class="hero-grid fade-in">
+      <div class="hero-tag"><span></span>Product Experience Designer</div>
+      <h1 class="hero-h1">Hey, I'm <em>Disha.</em><br>A designer who thinks<br>before she moves.</h1>
+      <p class="hero-sub">And makes things people don't have to think about.</p>
+      <button class="hero-cta" onclick="showPage('work')">See the work →</button>
+      <div class="hero-scroll">Scroll to explore</div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="about-strip" id="about">
+    <div class="about-inner">
+      <div>
+        <div class="about-label">About me</div>
+        <h2 class="about-head">Making things,<br><em>deliberately.</em></h2>
+      </div>
+      <div>
+        <p class="about-body">
+          I've been making things for as long as I can remember. Drawing, sketching, painting, mehendi, photography, videography — if you couldn't find me studying, I was somewhere making something. At some point in 9th grade I got into chess. Took classes, played some tournaments, nothing serious — but it quietly changed how I think. Slower. More deliberate. Think before you move. I didn't realise it then, but that's basically how I design too.
+        </p>
+        <p class="about-body">
+          I'm a final year Product Experience Design student. I landed here because design is the one place where creativity and strategy aren't opposites — they need each other. I did my internship at a robotics startup as the only designer. Technical, niche, nothing familiar. I figured it out. That's what I do — I go into things I don't fully know, I observe, I find what's actually wrong, and I make something real out of it.
+        </p>
+        <div class="about-chips">
+          <span class="chip">UX Research</span>
+          <span class="chip">Product Strategy</span>
+          <span class="chip">Interaction Design</span>
+          <span class="chip">Design Systems</span>
+          <span class="chip">Vibe Coding</span>
+          <span class="chip">Figma</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-links">
+      <a onclick="showPage('work')">Work</a>
+      <a onclick="showPage('playground')">AI Playground</a>
+      <a onclick="showPage('resume')">Resume</a>
+    </div>
+    <p>Made with intentionality by <strong>Disha Jain</strong> · 2025</p>
+  </footer>
+</div>
+
+<!-- ══════════════════════════════════ WORK PAGE ══════════════════════════════════ -->
+<div id="page-work" class="page">
+  <!-- Case Study Index -->
+  <div id="cs-index">
+    <div class="section-wrap">
+      <div class="section-head fade-in">
+        <span class="section-label">Selected Work</span>
+        <h2 class="section-title">Case <em>Studies</em></h2>
+      </div>
+      <div class="cards-grid fade-in">
+
+        <!-- CS1 -->
+        <div class="card" onclick="openCS('cs1')">
+          <div class="card-cover">
+            <svg viewBox="0 0 640 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="640" height="360" fill="#0D0D0D"/>
+              <rect x="60" y="60" width="520" height="240" rx="12" fill="#181818" stroke="#2a2a2a" stroke-width="1"/>
+              <!-- robot arm illustration -->
+              <circle cx="200" cy="200" r="40" fill="#1e1e1e" stroke="#333" stroke-width="2"/>
+              <rect x="190" y="120" width="20" height="80" rx="10" fill="#C4B5FD" opacity="0.7"/>
+              <circle cx="200" cy="200" r="12" fill="#C4B5FD"/>
+              <!-- audit annotations -->
+              <circle cx="340" cy="140" r="12" fill="#EF4444" opacity="0.9"/>
+              <text x="337" y="145" font-family="'Space Grotesk', sans-serif" font-size="11" fill="white" font-weight="700">1</text>
+              <circle cx="420" cy="190" r="12" fill="#EF4444" opacity="0.9"/>
+              <text x="417" y="195" font-family="'Space Grotesk', sans-serif" font-size="11" fill="white" font-weight="700">2</text>
+              <circle cx="370" cy="240" r="12" fill="#F59E0B" opacity="0.9"/>
+              <text x="367" y="245" font-family="'Space Grotesk', sans-serif" font-size="11" fill="white" font-weight="700">3</text>
+              <!-- severity bars -->
+              <rect x="460" y="120" width="80" height="10" rx="5" fill="#3a3a3a"/>
+              <rect x="460" y="120" width="70" height="10" rx="5" fill="#EF4444" opacity="0.8"/>
+              <rect x="460" y="138" width="80" height="10" rx="5" fill="#3a3a3a"/>
+              <rect x="460" y="138" width="45" height="10" rx="5" fill="#F59E0B" opacity="0.8"/>
+              <rect x="460" y="156" width="80" height="10" rx="5" fill="#3a3a3a"/>
+              <rect x="460" y="156" width="20" height="10" rx="5" fill="#22C55E" opacity="0.8"/>
+              <!-- label -->
+              <rect x="80" y="280" width="160" height="6" rx="3" fill="#2a2a2a"/>
+              <rect x="80" y="292" width="100" height="6" rx="3" fill="#2a2a2a"/>
+              <!-- purple accent pill -->
+              <rect x="440" y="278" width="120" height="28" rx="14" fill="rgba(196,181,253,0.12)" stroke="rgba(196,181,253,0.3)" stroke-width="1"/>
+              <text x="500" y="296" font-family="'Space Grotesk', sans-serif" font-size="11" fill="#C4B5FD" text-anchor="middle" font-weight="600">AUDIT</text>
+            </svg>
+          </div>
+          <div class="card-body">
+            <div class="card-tag">UX Research · Heuristic Audit</div>
+            <h3 class="card-title">NextUp Robotics — Heuristic Audit</h3>
+            <p class="card-desc">26 findings. 96% failed. Before redesigning anything, I needed to know what was actually broken.</p>
+            <div class="card-arrow">Read case study</div>
+          </div>
+        </div>
+
+        <!-- CS2 -->
+        <div class="card" onclick="openCS('cs2')">
+          <div class="card-cover">
+            <svg viewBox="0 0 640 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="640" height="360" fill="#F5F0FF"/>
+              <!-- flow diagram -->
+              <rect x="60" y="150" width="100" height="50" rx="10" fill="#8B5CF6" opacity="0.15" stroke="#8B5CF6" stroke-width="1.5"/>
+              <text x="110" y="178" font-family="'Space Grotesk', sans-serif" font-size="12" fill="#8B5CF6" text-anchor="middle" font-weight="600">Points</text>
+              <rect x="210" y="150" width="100" height="50" rx="10" fill="#8B5CF6" opacity="0.25" stroke="#8B5CF6" stroke-width="1.5"/>
+              <text x="260" y="178" font-family="'Space Grotesk', sans-serif" font-size="12" fill="#5B21B6" text-anchor="middle" font-weight="600">Paths</text>
+              <rect x="360" y="150" width="100" height="50" rx="10" fill="#8B5CF6" opacity="0.5" stroke="#8B5CF6" stroke-width="1.5"/>
+              <text x="410" y="178" font-family="'Space Grotesk', sans-serif" font-size="12" fill="#3730A3" text-anchor="middle" font-weight="700">Sequences</text>
+              <rect x="510" y="150" width="100" height="50" rx="10" fill="#8B5CF6" stroke="#8B5CF6" stroke-width="1.5"/>
+              <text x="560" y="178" font-family="'Space Grotesk', sans-serif" font-size="12" fill="white" text-anchor="middle" font-weight="700">BT</text>
+              <!-- arrows -->
+              <path d="M160 175 L210 175" stroke="#8B5CF6" stroke-width="2" stroke-dasharray="4 3"/>
+              <path d="M310 175 L360 175" stroke="#8B5CF6" stroke-width="2" stroke-dasharray="4 3"/>
+              <path d="M460 175 L510 175" stroke="#8B5CF6" stroke-width="2"/>
+              <polygon points="507,170 517,175 507,180" fill="#8B5CF6"/>
+              <!-- drag illustration -->
+              <rect x="210" y="240" width="70" height="32" rx="8" fill="#C4B5FD" opacity="0.5"/>
+              <text x="245" y="260" font-family="'Space Grotesk', sans-serif" font-size="11" fill="#5B21B6" text-anchor="middle" font-weight="500">path_01</text>
+              <path d="M280 256 L310 230" stroke="#8B5CF6" stroke-width="1.5" stroke-dasharray="3 3"/>
+              <!-- label top -->
+              <text x="320" y="80" font-family="'EB Garamond', serif" font-size="28" fill="#1A1A1A" text-anchor="middle" font-style="italic">Sequence Redesign</text>
+            </svg>
+          </div>
+          <div class="card-body">
+            <div class="card-tag">Feature Redesign · Interaction Design</div>
+            <h3 class="card-title">Sequence Feature Redesign — Path Making UI</h3>
+            <p class="card-desc">A feature nobody used. Three concepts later, a deployment engineer asked to test it on a real robot.</p>
+            <div class="card-arrow">Read case study</div>
+          </div>
+        </div>
+
+        <!-- CS3 -->
+        <div class="card" onclick="openCS('cs3')">
+          <div class="card-cover">
+            <svg viewBox="0 0 640 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="640" height="360" fill="#0D1A2A"/>
+              <!-- map-like grid -->
+              <g opacity="0.15">
+                <line x1="0" y1="90" x2="640" y2="90" stroke="#4ADE80" stroke-width="0.5"/>
+                <line x1="0" y1="180" x2="640" y2="180" stroke="#4ADE80" stroke-width="0.5"/>
+                <line x1="0" y1="270" x2="640" y2="270" stroke="#4ADE80" stroke-width="0.5"/>
+                <line x1="160" y1="0" x2="160" y2="360" stroke="#4ADE80" stroke-width="0.5"/>
+                <line x1="320" y1="0" x2="320" y2="360" stroke="#4ADE80" stroke-width="0.5"/>
+                <line x1="480" y1="0" x2="480" y2="360" stroke="#4ADE80" stroke-width="0.5"/>
+              </g>
+              <!-- location pins -->
+              <circle cx="220" cy="150" r="8" fill="#4ADE80" opacity="0.9"/>
+              <circle cx="220" cy="150" r="16" fill="#4ADE80" opacity="0.2"/>
+              <circle cx="380" cy="200" r="8" fill="#C4B5FD" opacity="0.9"/>
+              <circle cx="380" cy="200" r="16" fill="#C4B5FD" opacity="0.2"/>
+              <circle cx="500" cy="120" r="8" fill="#4ADE80" opacity="0.6"/>
+              <circle cx="140" cy="250" r="8" fill="#C4B5FD" opacity="0.6"/>
+              <!-- route -->
+              <path d="M140 250 Q220 200 220 150 Q300 120 380 200 Q440 250 500 120" stroke="#4ADE80" stroke-width="2" stroke-dasharray="5 4" opacity="0.6" fill="none"/>
+              <!-- phone mockup -->
+              <rect x="260" y="220" width="120" height="120" rx="12" fill="#111" stroke="#333" stroke-width="1"/>
+              <rect x="270" y="235" width="100" height="70" rx="6" fill="#1a2a1a"/>
+              <rect x="275" y="240" width="90" height="60" rx="4" fill="#0d1a0d" opacity="0.8"/>
+              <!-- phone content -->
+              <circle cx="295" cy="258" r="4" fill="#4ADE80" opacity="0.8"/>
+              <rect x="303" y="254" width="50" height="4" rx="2" fill="#333"/>
+              <rect x="303" y="262" width="35" height="3" rx="1.5" fill="#2a2a2a"/>
+              <!-- QUEST label -->
+              <text x="320" y="92" font-family="'Space Grotesk', sans-serif" font-size="36" fill="#4ADE80" text-anchor="middle" font-weight="700" opacity="0.9" letter-spacing="-1">QUEST</text>
+              <text x="320" y="110" font-family="'Space Grotesk', sans-serif" font-size="11" fill="rgba(255,255,255,0.3)" text-anchor="middle" letter-spacing="3">TRAVEL · DISCOVER · TRUST</text>
+            </svg>
+          </div>
+          <div class="card-body">
+            <div class="card-tag">0→1 Product · Academic</div>
+            <h3 class="card-title">QUEST — Travel App for Authentic Discovery</h3>
+            <p class="card-desc">The problem wasn't money. It was trust. 20 interviews and 150+ ideas led to one clear direction.</p>
+            <div class="card-arrow">Read case study</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <footer>
+      <div class="footer-links">
+        <a onclick="showPage('playground')">AI Playground</a>
+        <a onclick="showPage('resume')">Resume</a>
+      </div>
+      <p>Made with intentionality by <strong>Disha Jain</strong> · 2025</p>
+    </footer>
+  </div>
+
+  <!-- ═══ CASE STUDY 1 ═══ -->
+  <div id="cs1" class="cs-page">
+    <div class="breadcrumb">
+      <span onclick="closeCS()">Work</span>
+      <span class="sep">/</span>
+      <span class="current">Heuristic Audit — NextUp Robotics</span>
+    </div>
+
+    <div class="cs-hero">
+      <div class="cs-hero-inner">
+        <div class="cs-tag">UX Research · Heuristic Audit</div>
+        <h1 class="cs-h1">Before I could redesign anything, I needed to know what was<br><em>actually broken.</em></h1>
+        <p class="cs-bluf">I joined NextUp Robotics as the sole UI/UX design intern. The robot control software had been built module by module by the development team — functional, but without any UX design process behind it. So before touching any designs, I ran a heuristic audit. 26 findings. 96% failed. The three biggest problems pointed directly at what needed to be fixed first.</p>
+        <div class="cs-meta">
+          <div class="cs-meta-item"><span class="cs-meta-label">Role</span><span class="cs-meta-val">Sole UI/UX Designer</span></div>
+          <div class="cs-meta-item"><span class="cs-meta-label">Context</span><span class="cs-meta-val">NextUp Robotics Internship</span></div>
+          <div class="cs-meta-item"><span class="cs-meta-label">Method</span><span class="cs-meta-val">Nielsen 10 Heuristics</span></div>
+          <div class="cs-meta-item"><span class="cs-meta-label">Output</span><span class="cs-meta-val">26 Findings, 3 Redesigns</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cs-body fade-in">
+
+      <div class="cs-section">
+        <div class="cs-section-num">Section 01</div>
+        <h2 class="cs-section-head">The software existed. It worked.<br><em>Nobody had designed it.</em></h2>
+        <p class="cs-p">NextUp Robotics builds robotic arms for production automation. By the time I joined, they had a working software — six modules, each handling a different part of programming the robot.</p>
+        <p class="cs-p">Three of those modules are where operators spend almost all of their time. These are the ones used repeatedly — where the back-and-forth errors live, and where the cognitive load compounds across a deployment session. Each module was built separately, by developers, one at a time. Each worked on its own. But they were not designed to work together. No consistent patterns, no shared feedback model, no workflow logic connecting the pages.</p>
+        <p class="cs-p">Nobody had looked at the full picture. That was the starting point.</p>
+      </div>
+
+      <div class="cs-section">
+        <div class="cs-section-num">Section 02</div>
+        <h2 class="cs-section-head">The software had a clean path.<br><em>Deployment did not follow it.</em></h2>
+        <p class="cs-p">On paper, the workflow was linear. Define points. Build paths. Test. Assemble the routine. Run it.</p>
+        <p class="cs-p">In practice, operators were constantly going back. A path would fail and they would return to points. A button would be disabled with no explanation. A sync would be off and they would only realise three steps later. The software was built for things going right. Deployment assumed they would not.</p>
+
+        <!-- Flow diagram SVG -->
+        <div class="cs-visual">
+          <svg viewBox="0 0 720 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="720" height="200" fill="#FAFAF7"/>
+            <!-- Linear flow (top) -->
+            <text x="36" y="50" font-family="'Space Grotesk', sans-serif" font-size="11" fill="#6B6B6B" font-weight="600" letter-spacing="1">EXPECTED</text>
+            <rect x="36" y="60" width="80" height="36" rx="8" fill="#EDE9FE" stroke="#C4B5FD" stroke-width="1.5"/>
+            <text x="76" y="82" font-family="'Space Grotesk', sans-serif" font-size="12" fill="#5B21B6" text-anchor="middle">Points</text>
+            <path d="M116 78 L146 78" stroke="#C4B5FD" stroke-width="2"/><polygon points="143,73 153,78 143,83" fill="#C4B5FD"/>
+            <rect x="153" y="60" width="80" height="36" rx="8" fill="#EDE9FE" stroke="#C4B5FD" stroke-width="1.5"/>
+            <text x="193" y="82" font-family="'Space Grotesk', sans-serif" font-size="12" fill="#5B21B6" text-anchor="middle">Paths</text>
+            <path d="M233 78 L263 78" stroke="#C4B5FD" stroke-width="2"/><polygon points="260,73 270,78 260,83" fill="#C4B5FD"/>
+            <rect x="270" y="60" width="80" height="36" rx="8" fill="#EDE9FE" stroke="#C4B5FD" stroke-width="1.5"/>
+            <text x="310" y="82" font-family="'Space Grotesk', sans-serif" font-size="12" fill="#5B21B6" text-anchor="middle">Test</text>
+            <path d="M350 78 L380 78" stroke="#C4B5FD" stroke-width="2"/><polygon points="377,73 387,78 377,83" fill="#C4B5FD"/>
+            <rect x="387" y="60" width="80" height="36" rx="8" fill="#8B5CF6" stroke="#8B5CF6" stroke-width="1.5"/>
+            <text x="427" y="82" font-family="'Space Grotesk', sans-serif" font-size="12" fill="#fff" text-anchor="middle">Run</text>
+
+            <!-- Reality flow (bottom) -->
+            <text x="36" y="130" font-family="'Space Grotesk', sans-serif" font-size="11" fill="#6B6B6B" font-weight="600" letter-spacing="1">REALITY</text>
+            <rect x="36" y="140" width="80" height="36" rx="8" fill="#FEE2E2" stroke="#FCA5A5" stroke-width="1.5"/>
+            <text x="76" y="162" font-family="'Space Grotesk', sans-serif" font-size="12" fill="#DC2626" text-anchor="middle">Points</text>
+            <path d="M116 158 L146 158" stroke="#EF4444" stroke-width="2"/><polygon points="143,153 153,158 143,163" fill="#EF4444"/>
+            <rect x="153" y="140" width="80" height="36" rx="8" fill="#FEE2E2" stroke="#FCA5A5" stroke-width="1.5"/>
+            <text x="193" y="162" font-family="'Space Grotesk', sans-serif" font-size="12" fill="#DC2626" text-anchor="middle">Paths</text>
+            <!-- back arrow -->
+            <path d="M193 140 Q193 110 76 110 Q76 140 76 140" stroke="#EF4444" stroke-width="1.5" stroke-dasharray="4 3" fill="none"/>
+            <polygon points="73,137 76,147 79,137" fill="#EF4444"/>
+            <path d="M233 158 L263 158" stroke="#EF4444" stroke-width="2"/><polygon points="260,153 270,158 260,163" fill="#EF4444"/>
+            <rect x="270" y="140" width="80" height="36" rx="8" fill="#FEE2E2" stroke="#FCA5A5" stroke-width="1.5"/>
+            <text x="310" y="162" font-family="'Space Grotesk', sans-serif" font-size="12" fill="#DC2626" text-anchor="middle">Test</text>
+            <path d="M310 140 Q310 110 193 110" stroke="#EF4444" stroke-width="1.5" stroke-dasharray="4 3" fill="none"/>
+          </svg>
+        </div>
+        <p class="cs-caption">Left: how the software expected operators to work. Right: how deployment actually went.</p>
+      </div>
+
+      <div class="cs-section">
+        <div class="cs-section-num">Section 03</div>
+        <h2 class="cs-section-head">The deployment engineers<br><em>said it plainly.</em></h2>
+        <p class="cs-p">The people using this software were the deployment team — engineers on-site, programming the robot at client locations. Not newcomers to technical work. But the software was demanding in a way that had nothing to do with technical complexity.</p>
+        <div class="cs-quote">
+          <p>"Bahot dimaag lagana padta hai poora."</p>
+          <cite>Shivam, Deployment Engineer — "You have to use your entire brain for it."</cite>
+        </div>
+        <div class="cs-quote">
+          <p>"Full concentration lagana padta hai — kya karna hai, kaise karna hai."</p>
+          <cite>Adnan Alvi, Robotics Software Engineer — "Full concentration on what to do, how to do it."</cite>
+        </div>
+        <p class="cs-p">When the people who know the product best still find it cognitively demanding, that is worth looking into. That is what the audit was for.</p>
+      </div>
+
+      <div class="cs-section">
+        <div class="cs-section-num">Section 04</div>
+        <h2 class="cs-section-head">The audit</h2>
+        <p class="cs-p">I used Nielsen's 10 usability heuristics as the evaluation framework and ran it across the 3 core modules. Each observation was rated on the severity scale from cosmetic to catastrophic. Before starting, I had already spoken with the development team — they explained what was intentional, what was a known limitation, and what they had not thought about.</p>
+        <div class="cs-callout-grid">
+          <div class="cs-callout"><div class="cs-callout-num">26</div><div class="cs-callout-label">Total findings</div></div>
+          <div class="cs-callout"><div class="cs-callout-num">96%</div><div class="cs-callout-label">Failure rate</div></div>
+          <div class="cs-callout"><div class="cs-callout-num">54%</div><div class="cs-callout-label">Rated major</div></div>
+          <div class="cs-callout"><div class="cs-callout-num">0%</div><div class="cs-callout-label">Rated "no problem"</div></div>
+        </div>
+        <p class="cs-p">That last number matters. "No problem" means the evaluator saw something and decided it was not actually an issue. I did not make that call once across 26 observations.</p>
+      </div>
+
+      <div class="cs-section">
+        <div class="cs-section-num">Section 05</div>
+        <h2 class="cs-section-head">The violations were not random.<br><em>They were concentrated in one place.</em></h2>
+        <p class="cs-p">One heuristic stands out: Visibility of System Status. Nine violations. More than any other. In plain terms: the system was not telling operators what was happening. Buttons were disabled without explanation. States looked normal when they were not. The most critical step before running the robot had almost no visible feedback.</p>
+        <!-- Heuristic heatmap -->
+        <div class="cs-visual">
+          <svg viewBox="0 0 700 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="700" height="280" fill="#fff"/>
+            <text x="30" y="28" font-family="'Space Grotesk', sans-serif" font-size="12" fill="#6B6B6B" font-weight="600" letter-spacing="1">HEURISTIC VIOLATIONS</text>
+            <!-- bars -->
+            <g font-family="'Space Grotesk', sans-serif" font-size="12" fill="#1A1A1A">
+              <!-- H1: visibility -->
+              <rect x="220" y="44" width="390" height="20" rx="4" fill="#EDE9FE"/>
+              <rect x="220" y="44" width="390" height="20" rx="4" fill="#8B5CF6"/>
+              <text x="30" y="59" font-size="11" fill="#444">1. Visibility of System Status</text>
+              <text x="618" y="59" font-size="11" fill="#5B21B6" font-weight="700">9</text>
+              <!-- H5 -->
+              <rect x="220" y="72" width="217" height="20" rx="4" fill="#C4B5FD"/>
+              <text x="30" y="87" font-size="11" fill="#444">5. Error Prevention</text>
+              <text x="445" y="87" font-size="11" fill="#5B21B6" font-weight="600">5</text>
+              <!-- H6 -->
+              <rect x="220" y="100" width="174" height="20" rx="4" fill="#DDD6FE"/>
+              <text x="30" y="115" font-size="11" fill="#444">6. Recognition vs. Recall</text>
+              <text x="402" y="115" font-size="11" fill="#7C3AED">4</text>
+              <!-- H3 -->
+              <rect x="220" y="128" width="130" height="20" rx="4" fill="#EDE9FE"/>
+              <text x="30" y="143" font-size="11" fill="#444">3. User Control & Freedom</text>
+              <text x="358" y="143" font-size="11" fill="#7C3AED">3</text>
+              <!-- H9 -->
+              <rect x="220" y="156" width="87" height="20" rx="4" fill="#F3F0FF"/>
+              <text x="30" y="171" font-size="11" fill="#444">9. Help Users Recognize Errors</text>
+              <text x="315" y="171" font-size="11" fill="#9CA3AF">2</text>
+              <!-- H2 -->
+              <rect x="220" y="184" width="87" height="20" rx="4" fill="#F3F0FF"/>
+              <text x="30" y="199" font-size="11" fill="#444">2. Match System & Real World</text>
+              <text x="315" y="199" font-size="11" fill="#9CA3AF">2</text>
+              <!-- H7 -->
+              <rect x="220" y="212" width="43" height="20" rx="4" fill="#F5F3FF"/>
+              <text x="30" y="227" font-size="11" fill="#444">7. Flexibility & Efficiency</text>
+              <text x="271" y="227" font-size="11" fill="#9CA3AF">1</text>
+              <!-- No violations note -->
+              <text x="30" y="258" font-size="11" fill="#D1D5DB">Heuristics 4, 8, 10 — No violations found</text>
+            </g>
+          </svg>
+        </div>
+        <p class="cs-caption">9 violations on a single heuristic is not bad luck. It's a design assumption that turned out to be wrong.</p>
+      </div>
+
+      <div class="cs-section">
+        <div class="cs-section-num">Section 06</div>
+        <h2 class="cs-section-head">Three findings that changed<br><em>what we worked on next.</em></h2>
+
+        <div class="cs-finding">
+          <span class="cs-finding-badge badge-catastrophic">Catastrophic</span>
+          <div class="cs-finding-text">
+            <div class="cs-finding-title">File Management — Expected behaviour didn't exist</div>
+            The file system did not match how any software operator expects files to work. To edit a file, you could not open and edit it. You had to choose a backup version, write a new filename, create a new file, and edit that. Every single time. Not a learning curve that gets easier. Resets with every new person on the team.
+          </div>
+        </div>
+
+        <div class="cs-finding">
+          <span class="cs-finding-badge badge-catastrophic">Catastrophic</span>
+          <div class="cs-finding-text">
+            <div class="cs-finding-title">Sequence Feature — Incomplete, but invisible</div>
+            A sequence feature was visible in the UI. It had buttons, it had an interface. But the flow behind it was not built yet. Nothing communicated it was incomplete. Operators could spend time on it assuming it worked and only find out it did not during deployment.
+          </div>
+        </div>
+
+        <div class="cs-finding">
+          <span class="cs-finding-badge badge-major">Major</span>
+          <div class="cs-finding-text">
+            <div class="cs-finding-title">Status & Process Feedback — Across all three modules</div>
+            Disabled buttons with no explanation. Sync status that operators had to track manually. Motion planning validation — the last check before the robot executes — displayed only through a small colour indicator. The system had information operators needed. It just did not share it.
+          </div>
+        </div>
+      </div>
+
+      <div class="cs-section">
+        <div class="cs-section-num">Section 07</div>
+        <h2 class="cs-section-head">After the audit, we knew what to fix.<br><em>So we started there.</em></h2>
+        <p class="cs-p">Once the findings were documented and presented, the co-founders and I went through the list together. The decision was not mine alone. It was based on what was most damaging and what the team had capacity to address.</p>
+        <p class="cs-p">We picked three things: file management, the sequence feature, and the Behavior Tree UI. The smaller issues were not ignored — they were addressed naturally as the team rebuilt these flows. A better file system changes how states work across the product. A proper sequence feature changes how paths connect. The smaller things followed. Each became its own case study. The audit was the starting point.</p>
+      </div>
+
+      <div class="cs-section">
+        <div class="cs-section-num">Section 08</div>
+        <h2 class="cs-section-head">What I'd do differently</h2>
+        <p class="cs-p"><strong>More evaluators.</strong> I was the only person running this audit. Solo means solo perspective — there is no one to catch what you missed or flag where your framing is off. The development team was busy so I took interviews with them instead, which helped ground the findings. But it is not the same as a multi-evaluator audit.</p>
+        <p class="cs-p"><strong>Sharper framing of individual findings.</strong> Looking back at some entries in the audit sheet, I was still figuring out how to write a finding clearly while doing it. Some say "this is bad" without being specific enough about the consequence. Next audit: think harder about how to write an observation before starting, not during.</p>
+        <p class="cs-p"><strong>What the audit actually gave us.</strong> Before the audit, "the software is hard to use" was a feeling. After it, there were specific heuristics, severity ratings, and downstream effects. That is a different conversation with stakeholders. The audit created a shared language for the team to talk about problems — and that made every decision that came after more grounded.</p>
+      </div>
+
+      <div class="cs-next">
+        <div>
+          <p>Next Case Study</p>
+          <h3>Sequence Feature Redesign →</h3>
+        </div>
+        <button class="btn-outline" onclick="openCS('cs2')">Read it</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ CASE STUDY 2 ═══ -->
+  <div id="cs2" class="cs-page">
+    <div class="breadcrumb">
+      <span onclick="closeCS()">Work</span>
+      <span class="sep">/</span>
+      <span class="current">Sequence Feature Redesign</span>
+    </div>
+
+    <div class="cs-hero">
+      <div class="cs-hero-inner">
+        <div class="cs-tag">Feature Redesign · Interaction Design</div>
+        <h1 class="cs-h1">A feature nobody used. Three concepts later, a deployment engineer asked to test it on<br><em>a real robot.</em></h1>
+        <p class="cs-bluf">The co-founder knew the sequence feature existed. He also knew nobody was really using it. He asked me to figure out why and make it actually usable. No brief beyond that. What I found was three layers of problems — and what followed was three rounds of design, each solving something the previous one didn't.</p>
+        <div class="cs-meta">
+          <div class="cs-meta-item"><span class="cs-meta-label">Role</span><span class="cs-meta-val">Sole UI/UX Designer</span></div>
+          <div class="cs-meta-item"><span class="cs-meta-label">Type</span><span class="cs-meta-val">Feature Redesign</span></div>
+          <div class="cs-meta-item"><span class="cs-meta-label">Duration</span><span class="cs-meta-val">4-month Internship</span></div>
+          <div class="cs-meta-item"><span class="cs-meta-label">Testing</span><span class="cs-meta-val">5 Interns + Senior Team</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cs-body fade-in">
+
+      <div class="cs-section">
+        <div class="cs-section-num">Section 01</div>
+        <h2 class="cs-section-head">The feature context</h2>
+        <p class="cs-p">To make a robot do anything useful, operators go through a chain: <strong>Points → Paths → Path Testing → Behavior Tree</strong>. Points are coordinates in 3D space. Paths connect those points — with a movement type, a direction, a plan. Path testing checks if the plan actually works. The behavior tree is where all the logic lives: what runs first, what fails over to what, what loops.</p>
+        <p class="cs-p">The sequence feature sits inside this chain. Its job: help operators group paths into sequences so the behavior tree builds itself, rather than having to be assembled from scratch every time. That's the idea. In practice, it wasn't working.</p>
+      </div>
+
+      <div class="cs-section">
+        <div class="cs-section-num">Section 02</div>
+        <h2 class="cs-section-head">Three layers of problems</h2>
+        <div class="cs-finding" style="margin-bottom:12px">
+          <span class="cs-finding-badge badge-major">Problem 1</span>
+          <div class="cs-finding-text">
+            <div class="cs-finding-title">Wrong place in the workflow</div>
+            Sequencing lived in the Point Making UI. That's too early. At the point-making stage, operators are figuring out individual coordinates. They're not ready to think about how paths relate to each other or what order they should run in. The UI was asking for a sequence-level decision during point-level work.
+          </div>
+        </div>
+        <div class="cs-finding" style="margin-bottom:12px">
+          <span class="cs-finding-badge badge-major">Problem 2</span>
+          <div class="cs-finding-text">
+            <div class="cs-finding-title">One point could only belong to one sequence</div>
+            Real robot workflows aren't linear. A single position needs to appear in multiple sequences. The current system made that impossible. One point, one sequence, full stop.
+          </div>
+        </div>
+        <div class="cs-finding">
+          <span class="cs-finding-badge badge-major">Problem 3</span>
+          <div class="cs-finding-text">
+            <div class="cs-finding-title">Auto-generated paths went one way</div>
+            Robots need to return to their start position. The system was generating one-directional paths only. Every operator had to manually handle the return path — extra work, every time.
+          </div>
+        </div>
+        <p class="cs-p" style="margin-top:24px">The result: operators weren't using the feature. They were building behavior trees the long way, from scratch, path by path.</p>
+      </div>
+
+      <div class="cs-section">
+        <div class="cs-section-num">Section 03</div>
+        <h2 class="cs-section-head">Three concepts. Three rounds.</h2>
+        <div class="concept-grid">
+          <div class="concept-card">
+            <h4>Concept 1</h4>
+            <p>Improve what's there. Semiotic naming, multi-sequence point assignment, two-way paths. Better — but still in the wrong place in the workflow.</p>
+          </div>
+          <div class="concept-card" style="border-color: var(--purple); background: var(--purple-soft);">
+            <h4>Concept 2</h4>
+            <p>Move it. Remove sequence feature from Point Making UI. Move to Path Making UI. Drag and drop. Felt right — until two-way paths created behavior tree problems downstream.</p>
+          </div>
+          <div class="concept-card" style="border-color: #8B5CF6; background: #8B5CF6;">
+            <h4 style="color:rgba(255,255,255,0.7)">Concept 3 ✓</h4>
+            <p style="color:rgba(255,255,255,0.85)">Remove two-way system entirely. All paths one-way. One sequence = one logical chunk of behavior tree. The constraint became the feature.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="cs-section">
+        <div class="cs-section-num">Section 04</div>
+        <h2 class="cs-section-head">The reframe that mattered most</h2>
+        <p class="cs-p">The key insight came from watching how operators built behavior trees: they broke the tree into subtrees. One sequence per logical chunk. All paths before a decision point — one sequence. All paths after the decision — separate sequences. That's how they already thought. The software just hadn't matched it.</p>
+        <p class="cs-p">So in Concept 3: one sequence = one logical chunk of the robot's flow. You drag points into it. The system creates one-directional paths. When you're done, those sequences can go directly into the behavior tree without reorganization.</p>
+        <p class="cs-p">I also folded path testing into the Path Making UI — a button that runs all sequences in one flow. The Path Testing UI had always been a detour. Now it was just part of the process.</p>
+        <div class="cs-quote">
+          <p>"Moving the feature one step forward in the chain changed everything downstream."</p>
+          <cite>Key design insight — the reframe was about workflow placement, not visual design</cite>
+        </div>
+      </div>
+
+      <div class="cs-section">
+        <div class="cs-section-num">Section 05</div>
+        <h2 class="cs-section-head">Usability testing</h2>
+        <div class="cs-callout-grid">
+          <div class="cs-callout"><div class="cs-callout-num">5/5</div><div class="cs-callout-label">Interns completed full workflow</div></div>
+          <div class="cs-callout"><div class="cs-callout-num">8 min</div><div class="cs-callout-label">Fastest completion time</div></div>
+          <div class="cs-callout"><div class="cs-callout-num">12/15</div><div class="cs-callout-label">Tasks rated "very easy"</div></div>
+          <div class="cs-callout"><div class="cs-callout-num">0</div><div class="cs-callout-label">Training given on new system</div></div>
+        </div>
+        <p class="cs-p">One deployment engineer — who deploys real robots and knows the current software inside out — asked: <em>"Is this actually deployed? Can I run a real robot with this?"</em></p>
+        <p class="cs-p">The answer was no — it was a prototype, not connected to the backend yet. But the question was the point. Someone who works in the real system every day looked at this and thought it could be real. The same engineer said it had less cognitive load than the current system.</p>
+      </div>
+
+      <div class="cs-section">
+        <div class="cs-section-num">Section 06</div>
+        <h2 class="cs-section-head">What I learned</h2>
+        <p class="cs-p">The reframe that mattered most wasn't visual. It was about placement. Asking operators to think about sequences while they were still making points wasn't a design problem — it was a workflow problem. Moving the feature one step forward in the chain changed everything downstream.</p>
+        <p class="cs-p">I also learned something about iteration. Concept 1 solved real problems. Concept 2 solved a problem Concept 1 created. Concept 3 solved a problem Concept 2 created. Each one felt finished at the time. None of them were. The willingness to keep testing against the real flow — not just against the design — is what got to something that actually worked.</p>
+        <p class="cs-p">The biggest compliment was the question: <em>"Can I deploy a robot with this?"</em> I didn't set out to make something that felt production-ready. I set out to make something that made sense. Turns out those are the same thing.</p>
+      </div>
+
+      <div class="cs-next">
+        <div>
+          <p>Next Case Study</p>
+          <h3>QUEST — Travel App →</h3>
+        </div>
+        <button class="btn-outline" onclick="openCS('cs3')">Read it</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ CASE STUDY 3 ═══ -->
+  <div id="cs3" class="cs-page">
+    <div class="breadcrumb">
+      <span onclick="closeCS()">Work</span>
+      <span class="sep">/</span>
+      <span class="current">QUEST — Travel App</span>
+    </div>
+
+    <div class="cs-hero">
+      <div class="cs-hero-inner">
+        <div class="cs-tag">0→1 Product · Academic Project</div>
+        <h1 class="cs-h1">We didn't start with an app.<br><em>We started with a question.</em></h1>
+        <p class="cs-bluf">The problem wasn't money. It was trust. 20 in-depth interviews, 150+ ideas, and one clear insight led to QUEST — a travel companion for budget travelers who want authentic local experiences, not curated tourist lists.</p>
+        <div class="cs-meta">
+          <div class="cs-meta-item"><span class="cs-meta-label">Type</span><span class="cs-meta-val">0→1 Product</span></div>
+          <div class="cs-meta-item"><span class="cs-meta-label">Context</span><span class="cs-meta-val">Academic, Group of 3</span></div>
+          <div class="cs-meta-item"><span class="cs-meta-label">Phase</span><span class="cs-meta-val">Discovery → Hi-Fi</span></div>
+          <div class="cs-meta-item"><span class="cs-meta-label">Research</span><span class="cs-meta-val">20 Interviews</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cs-body fade-in">
+
+      <div class="cs-section">
+        <div class="cs-section-num">Section 01</div>
+        <h2 class="cs-section-head">20 strangers.<br><em>One conversation at a time.</em></h2>
+        <p class="cs-p">We ran 20 in-depth interviews across a wide spread of traveler types — students, working professionals, solo travelers, group travelers, international visitors. Age 21 to 35. From Ahmedabad, Chennai, Delhi, Jodhpur, Bangalore, Lithuania, and Mexico.</p>
+        <p class="cs-p">We built empathy maps for every single person. Four quadrants: says, thinks, does, feels. Then we wrote individual pain point summaries before looking for patterns across the group.</p>
+        <p class="cs-p">The research was messy in the best way. Nitesh talked about parking eating half his trip budget. Anita never told her parents when she traveled. Utkarsh wanted quiet, misty, anime-like places and felt like no app understood that. Donata got food poisoning in Delhi and completely changed how she ate for the rest of two months. Real people. Real problems. Not 'users.'</p>
+        <div class="cs-callout-grid">
+          <div class="cs-callout"><div class="cs-callout-num">20</div><div class="cs-callout-label">Interviews conducted</div></div>
+          <div class="cs-callout"><div class="cs-callout-num">4</div><div class="cs-callout-label">Empathy maps per person</div></div>
+          <div class="cs-callout"><div class="cs-callout-num">3</div><div class="cs-callout-label">Core personas identified</div></div>
+          <div class="cs-callout"><div class="cs-callout-num">150+</div><div class="cs-callout-label">Concepts ideated</div></div>
+        </div>
+      </div>
+
+      <div class="cs-section">
+        <div class="cs-section-num">Section 02</div>
+        <h2 class="cs-section-head">The problem wasn't money.<br><em>It was trust.</em></h2>
+        <p class="cs-p">Across 20 interviews, a pattern emerged that surprised us. People weren't complaining about being broke. They were complaining about not knowing what to believe. Google Maps showed closed restaurants. Instagram bloggers overhyped the same five spots. Apps returned the same curated results regardless of who you were or what you actually wanted.</p>
+        <div class="cs-quote">
+          <p>"The best experiences happened when I stopped planning and just talked to someone."</p>
+          <cite>Interview participant — the insight that changed our direction</cite>
+        </div>
+        <p class="cs-p">The insight that changed our direction: the problem isn't discovery. It's trustworthy discovery — localized, real, matched to who you are.</p>
+      </div>
+
+      <div class="cs-section">
+        <div class="cs-section-num">Section 03</div>
+        <h2 class="cs-section-head">Three people. <em>One underlying need.</em></h2>
+        <div class="concept-grid">
+          <div class="concept-card">
+            <h4>The Meticulous Planner</h4>
+            <p>Builds detailed itineraries in advance. Deep-researches every spot. But arrives at a destination and discovers he's missed all the things that weren't online. Knows how to plan — doesn't know how to discover.</p>
+          </div>
+          <div class="concept-card">
+            <h4>The Spontaneous Explorer</h4>
+            <p>Goes where the vibe takes them. Plans at 12am and leaves at 5am. Relies entirely on friends' references and word-of-mouth. Fun trips — but shallow ones. No tool helps them go deeper.</p>
+          </div>
+          <div class="concept-card">
+            <h4>The Conscious Traveler</h4>
+            <p>Has dietary restrictions that existing apps don't account for. Travels authentically but always compromising — eating backup snacks or skipping experiences because local food options are uncertain.</p>
+          </div>
+        </div>
+        <p class="cs-p">The common thread: they had the budget, the motivation, and the willingness. What they lacked was a trustworthy, localized guide that understood them as individuals.</p>
+      </div>
+
+      <div class="cs-section">
+        <div class="cs-section-num">Section 04</div>
+        <h2 class="cs-section-head">The HMW</h2>
+        <div class="cs-quote">
+          <p>"How might we help budget travelers discover authentic local experiences they can actually trust?"</p>
+          <cite>Not "build a travel app." Not "improve trip planning." Specific, grounded in research.</cite>
+        </div>
+        <p class="cs-p">That specificity changed everything about what we designed. We weren't competing with Google Maps or MakeMyTrip. We were filling a gap they weren't trying to fill.</p>
+      </div>
+
+      <div class="cs-section">
+        <div class="cs-section-num">Section 05</div>
+        <h2 class="cs-section-head">We didn't converge fast.<br><em>That was the point.</em></h2>
+        <p class="cs-p">We ran Crazy 8s and generated over 150 distinct concepts — everything from gamified rewards for local recommendations, to AI-generated itineraries, to community-based rating systems where locals verify spots, to a language-translation companion designed specifically for rural travel.</p>
+        <p class="cs-p">The narrowing happened on a physical board — stickies sorted by theme, marked for feasibility, cross-referenced against persona needs. The brief kept us honest: which of these actually addresses the trust gap? Which requires local knowledge to work?</p>
+      </div>
+
+      <div class="cs-section">
+        <div class="cs-section-num">Section 06</div>
+        <h2 class="cs-section-head">QUEST — find more than destinations.</h2>
+        <p class="cs-p">QUEST is a travel companion app designed for budget travelers in India who want authentic local experiences — not curated tourist lists. The core premise: surface real, local, trustworthy information based on who you are and what you're actually looking for. Not what's most popular. Not what's most sponsored. What's most likely to be the right thing for you.</p>
+        <p class="cs-p">Key flows we designed: Onboarding (preference setting that personalizes what QUEST surfaces), Home (contextual feed based on location, time of day, and travel style), Map View (explore-mode with local density and filtering), Itinerary Builder (structured planning that still leaves room for spontaneity), Adventure Detail Pages (deep, locally-verified information), and Automated Itinerary (AI-assisted trip planning from stated goals).</p>
+        <p class="cs-p">The visual language was deliberate. We chose a high-contrast palette — near-black, sharp lime green, warm cream — because our users were often in outdoor, high-brightness environments. Readability in sunlight mattered.</p>
+      </div>
+
+      <div class="cs-section">
+        <div class="cs-section-num">Section 07</div>
+        <h2 class="cs-section-head">Honest.</h2>
+        <p class="cs-p">The research was the strongest part of this project. Twenty interviews, properly synthesized, led to a problem statement that actually held up under pressure. That didn't happen by accident — it took time we almost didn't give it.</p>
+        <p class="cs-p">The UI was a learning curve. We were finding our visual language as we went, which means some early screens don't look like the later ones. If I were doing this again, I'd lock the design system before touching hi-fi.</p>
+        <p class="cs-p">We also didn't get to test the prototype with real users. We have a complete flow, but no validation loop. That's the honest gap. The next step for QUEST would be a structured usability study — specifically testing the trust layer: do users actually believe the recommendations are locally sourced?</p>
+        <p class="cs-p">What this project did teach me: design thinking isn't a process you follow. It's a habit you build. Going from 150 ideas to one coherent product took more discernment than I expected — and I'd get better at it faster the next time.</p>
+      </div>
+
+      <div class="cs-next">
+        <div>
+          <p>Next</p>
+          <h3>AI Playground →</h3>
+        </div>
+        <button class="btn-outline" onclick="showPage('playground')">Explore it</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════ PLAYGROUND PAGE ══════════════════════════════════ -->
+<div id="page-playground" class="page">
+  <!-- Playground index -->
+  <div id="pg-index">
+    <div class="section-wrap playground-section">
+      <div class="section-head fade-in">
+        <span class="section-label">Experiments in AI-assisted Making</span>
+        <h2 class="section-title">AI <em>Playground</em></h2>
+      </div>
+      <div class="cards-grid triple fade-in">
+
+        <!-- Typo Tool -->
+        <div class="card" onclick="openPG('pg1')">
+          <div class="card-cover">
+            <svg viewBox="0 0 400 225" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="400" height="225" fill="#F8F4FF"/>
+              <text x="30" y="90" font-family="'EB Garamond', serif" font-size="52" fill="#1A1A1A" opacity="0.9" letter-spacing="-2">Aa</text>
+              <text x="30" y="115" font-family="'Space Grotesk', sans-serif" font-size="14" fill="#8B5CF6" font-weight="600">Space Grotesk</text>
+              <rect x="30" y="128" width="200" height="1" fill="#E8E6E0"/>
+              <text x="30" y="150" font-family="'Space Grotesk', sans-serif" font-size="11" fill="#6B6B6B" letter-spacing="2">GEOMETRIC · HUMANIST</text>
+              <!-- swatches -->
+              <rect x="30" y="165" width="32" height="32" rx="6" fill="#1A1A1A"/>
+              <rect x="68" y="165" width="32" height="32" rx="6" fill="#8B5CF6"/>
+              <rect x="106" y="165" width="32" height="32" rx="6" fill="#C4B5FD"/>
+              <rect x="144" y="165" width="32" height="32" rx="6" fill="#FAFAF7" stroke="#E8E6E0" stroke-width="1"/>
+              <!-- right side bars -->
+              <rect x="290" y="50" width="80" height="8" rx="4" fill="#1A1A1A" opacity="0.8"/>
+              <rect x="290" y="66" width="60" height="6" rx="3" fill="#E8E6E0"/>
+              <rect x="290" y="80" width="70" height="6" rx="3" fill="#E8E6E0"/>
+              <rect x="290" y="100" width="80" height="8" rx="4" fill="#8B5CF6" opacity="0.7"/>
+              <rect x="290" y="116" width="55" height="6" rx="3" fill="#EDE9FE"/>
+              <rect x="290" y="130" width="65" height="6" rx="3" fill="#EDE9FE"/>
+            </svg>
+          </div>
+          <div class="card-body">
+            <div class="card-tag grey">Claude Code · 1 Day</div>
+            <h3 class="card-title">Typo Tool</h3>
+            <p class="card-desc">A typography playground built with Claude Code — to learn, test, and document type in real UI contexts.</p>
+            <div class="card-arrow">View project</div>
+          </div>
+        </div>
+
+        <!-- Duckie Wallpaper -->
+        <div class="card" onclick="openPG('pg2')">
+          <div class="card-cover">
+            <svg viewBox="0 0 400 225" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="400" height="225" fill="#FFF9E6"/>
+              <!-- desktop mockup -->
+              <rect x="40" y="40" width="320" height="180" rx="8" fill="#1A1A1A"/>
+              <rect x="40" y="40" width="320" height="14" rx="4" fill="#2a2a2a"/>
+              <!-- duck 1 -->
+              <ellipse cx="100" cy="140" rx="28" ry="22" fill="#FFD60A"/>
+              <circle cx="116" cy="128" r="14" fill="#FFD60A"/>
+              <ellipse cx="122" cy="126" rx="6" ry="4" fill="#FF9500"/>
+              <circle cx="118" cy="124" r="2" fill="#1A1A1A"/>
+              <!-- duck 2 -->
+              <ellipse cx="200" cy="150" rx="22" ry="17" fill="#34D399"/>
+              <circle cx="213" cy="140" r="11" fill="#34D399"/>
+              <ellipse cx="218" cy="139" rx="5" ry="3" fill="#059669"/>
+              <circle cx="214" cy="137" r="1.5" fill="#1A1A1A"/>
+              <!-- duck 3 -->
+              <ellipse cx="300" cy="135" rx="25" ry="20" fill="#F472B6"/>
+              <circle cx="314" cy="124" r="12" fill="#F472B6"/>
+              <ellipse cx="319" cy="123" rx="5" ry="3.5" fill="#EC4899"/>
+              <circle cx="315" cy="121" r="1.5" fill="#1A1A1A"/>
+              <!-- speech bubble -->
+              <rect x="126" y="108" width="80" height="28" rx="8" fill="#fff"/>
+              <path d="M140 136 L135 144 L148 136Z" fill="#fff"/>
+              <text x="166" y="127" font-family="'Space Grotesk', sans-serif" font-size="10" fill="#1A1A1A" text-anchor="middle">time to shine!</text>
+            </svg>
+          </div>
+          <div class="card-body">
+            <div class="card-tag grey">Claude · HTML Animation</div>
+            <h3 class="card-title">Duckie Wallpaper (lol)</h3>
+            <p class="card-desc">7 ducks, each appearing with a message every 1.5 hours during working hours — and the project that taught me how to actually work with AI.</p>
+            <div class="card-arrow">View project</div>
+          </div>
+        </div>
+
+        <!-- Relight -->
+        <div class="card" onclick="openPG('pg3')">
+          <div class="card-cover">
+            <svg viewBox="0 0 400 225" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="400" height="225" fill="#0D0D0D"/>
+              <!-- photo frame -->
+              <rect x="40" y="40" width="160" height="145" rx="8" fill="#181818"/>
+              <!-- simulated photo with light -->
+              <rect x="44" y="44" width="152" height="137" rx="6" fill="#0a1520"/>
+              <!-- light glow -->
+              <radialGradient id="lg1" cx="50%" cy="30%" r="50%">
+                <stop offset="0%" stop-color="#FCD34D" stop-opacity="0.6"/>
+                <stop offset="100%" stop-color="transparent"/>
+              </radialGradient>
+              <rect x="44" y="44" width="152" height="137" rx="6" fill="url(#lg1)"/>
+              <!-- light position indicator -->
+              <circle cx="116" cy="75" r="8" fill="none" stroke="#FCD34D" stroke-width="1.5"/>
+              <circle cx="116" cy="75" r="3" fill="#FCD34D"/>
+              <!-- controls panel -->
+              <rect x="220" y="40" width="150" height="145" rx="8" fill="#181818"/>
+              <text x="235" y="62" font-family="'Space Grotesk', sans-serif" font-size="10" fill="rgba(255,255,255,0.4)" font-weight="600" letter-spacing="1">LIGHT TYPE</text>
+              <rect x="235" y="68" width="50" height="22" rx="6" fill="#8B5CF6"/>
+              <text x="260" y="83" font-family="'Space Grotesk', sans-serif" font-size="10" fill="#fff" text-anchor="middle">Soft</text>
+              <rect x="292" y="68" width="50" height="22" rx="6" fill="#2a2a2a"/>
+              <text x="317" y="83" font-family="'Space Grotesk', sans-serif" font-size="10" fill="rgba(255,255,255,0.4)" text-anchor="middle">Spot</text>
+              <!-- sliders -->
+              <text x="235" y="112" font-family="'Space Grotesk', sans-serif" font-size="10" fill="rgba(255,255,255,0.4)">Intensity</text>
+              <rect x="235" y="118" width="120" height="4" rx="2" fill="#2a2a2a"/>
+              <rect x="235" y="118" width="80" height="4" rx="2" fill="#8B5CF6"/>
+              <circle cx="315" cy="120" r="6" fill="#8B5CF6"/>
+              <text x="235" y="142" font-family="'Space Grotesk', sans-serif" font-size="10" fill="rgba(255,255,255,0.4)">Blur</text>
+              <rect x="235" y="148" width="120" height="4" rx="2" fill="#2a2a2a"/>
+              <rect x="235" y="148" width="55" height="4" rx="2" fill="#6366F1"/>
+              <circle cx="290" cy="150" r="6" fill="#6366F1"/>
+              <!-- colour swatches -->
+              <text x="235" y="172" font-family="'Space Grotesk', sans-serif" font-size="10" fill="rgba(255,255,255,0.4)">Color</text>
+              <circle cx="245" cy="183" r="7" fill="#FCD34D"/>
+              <circle cx="263" cy="183" r="7" fill="#F472B6"/>
+              <circle cx="281" cy="183" r="7" fill="#60A5FA"/>
+              <circle cx="299" cy="183" r="7" fill="white" stroke="#2a2a2a" stroke-width="1"/>
+            </svg>
+          </div>
+          <div class="card-body">
+            <div class="card-tag grey">Figma AI · Image Editing</div>
+            <h3 class="card-title">Relight</h3>
+            <p class="card-desc">An image relighting tool built in Figma. Also the experiment that taught me clarity is not something AI can give you.</p>
+            <div class="card-arrow">View project</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <footer>
+      <div class="footer-links">
+        <a onclick="showPage('work')">Work</a>
+        <a onclick="showPage('resume')">Resume</a>
+      </div>
+      <p>Made with intentionality by <strong>Disha Jain</strong> · 2025</p>
+    </footer>
+  </div>
+
+  <!-- ═══ PG 1: Typo Tool ═══ -->
+  <div id="pg1" class="cs-page">
+    <div class="breadcrumb">
+      <span onclick="closePG()">AI Playground</span>
+      <span class="sep">/</span>
+      <span class="current">Typo Tool</span>
+    </div>
+    <div class="cs-hero">
+      <div class="cs-hero-inner">
+        <div class="cs-tag">Claude Code · 1 Day</div>
+        <h1 class="cs-h1">A typography playground<br><em>built with AI.</em></h1>
+        <p class="cs-bluf">To learn, test, and document type in real UI contexts. Also the project where I learned that building fast doesn't mean building the right thing.</p>
+        <div class="cs-meta">
+          <div class="cs-meta-item"><span class="cs-meta-label">Built with</span><span class="cs-meta-val">Claude Code</span></div>
+          <div class="cs-meta-item"><span class="cs-meta-label">Time</span><span class="cs-meta-val">1 Day</span></div>
+          <div class="cs-meta-item"><span class="cs-meta-label">Status</span><span class="cs-meta-val">Shipped, Wrapped</span></div>
+          <div class="cs-meta-item"><span class="cs-meta-label">Live</span><span class="cs-meta-val"><a href="https://jaindisha2703-ship-it.github.io/typo-tool/" target="_blank" style="color:var(--purple)">typo-tool ↗</a></span></div>
+        </div>
+      </div>
+    </div>
+    <div class="cs-body fade-in">
+      <div class="cs-section">
+        <h2 class="cs-section-head">It started as documentation.<br><em>It turned into a tool.</em></h2>
+        <p class="cs-p">I was learning about typography — trying to understand how typefaces actually behave in real UI, not just in theory. I was going to document my learnings in notes. Then I thought: what if I just built the thing I was trying to document? A space where I could actually test type in different contexts — display, body, UI components — and see how it felt rather than just reading about it. So I built it. One day. Using Claude Code.</p>
+      </div>
+      <div class="cs-section">
+        <h2 class="cs-section-head">What the tool does</h2>
+        <p class="cs-p">Test typefaces across different UI contexts — display headings, body copy, labels, UI components. Play with type combinations and see how they hold up in real layouts, not just abstract swatches. Save your explorations and document your thinking — classification (is this geometric, humanist, transitional?), where it could work, what it feels like. There's also a Resources section — links I used while researching, references that shaped how I was thinking about type.</p>
+      </div>
+      <div class="cs-section">
+        <h2 class="cs-section-head">It wasn't the right thing to build.<br><em>That was the point.</em></h2>
+        <p class="cs-p">The UI isn't great. The UX isn't a proper MVP. In its current state, it's not particularly useful. I knew this while building it. I shipped it anyway — because the goal was never to build a polished product. It was to understand what AI tools like Claude Code can actually enable. How fast you can go from idea to something real.</p>
+        <p class="cs-p">But it also made something clear: I built something that didn't need to exist. I jumped into making without understanding the space, the use case, what already exists. That mistake — and noticing it — was worth more than finishing the tool.</p>
+      </div>
+      <div class="cs-section">
+        <div class="cs-quote">
+          <p>"When building becomes easy, thinking becomes the real skill."</p>
+          <cite>AI speeds things up. But clarity still matters more than ever — maybe more than before.</cite>
+        </div>
+        <p class="cs-p">Explore deeply, understand the problem, understand the space, understand what already exists. Then build. I'm taking that forward.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ PG 2: Duckie Wallpaper ═══ -->
+  <div id="pg2" class="cs-page">
+    <div class="breadcrumb">
+      <span onclick="closePG()">AI Playground</span>
+      <span class="sep">/</span>
+      <span class="current">Duckie Wallpaper</span>
+    </div>
+    <div class="cs-hero">
+      <div class="cs-hero-inner">
+        <div class="cs-tag">Claude · HTML Animation</div>
+        <h1 class="cs-h1">7 ducks. An animated wallpaper.<br><em>And how Claude spiralled.</em></h1>
+        <p class="cs-bluf">An animated HTML wallpaper with 7 ducks, built with AI — and the project that taught me how to actually work with it. Claude always finds a way to get the task done. Right way or wrong way — it doesn't matter to it. Making sure it has what it actually needs? That's mine.</p>
+        <div class="cs-meta">
+          <div class="cs-meta-item"><span class="cs-meta-label">Built with</span><span class="cs-meta-val">Claude</span></div>
+          <div class="cs-meta-item"><span class="cs-meta-label">Type</span><span class="cs-meta-val">HTML Animation</span></div>
+          <div class="cs-meta-item"><span class="cs-meta-label">Status</span><span class="cs-meta-val">Wrapped (bugs and all)</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="cs-body fade-in">
+      <div class="cs-section">
+        <h2 class="cs-section-head">7 ducks. One every 1.5 hours. All day.</h2>
+        <p class="cs-p">I found 7 duck illustrations on Pinterest. Too cute to ignore. Each one pops up during working hours with a small message — every 1.5 hours, one at a time. They cycle through all 7, then restart the next working day. I also had Claude credits left, so I thought: why not.</p>
+        <p class="cs-p">I wanted to understand how individual vector elements could be brought together and animated. Could coding and AI actually do that? I didn't know. I wanted to find out. This was also the first time I actually went into the code and changed things myself — not just accepting whatever Claude produced. That part was new.</p>
+      </div>
+      <div class="cs-section">
+        <h2 class="cs-section-head">Claude was spiralling.<br><em>I couldn't see it — until I read the logs.</em></h2>
+        <p class="cs-p">I did all the hard work upfront: found the ducks, figured out positions, X to Y coordinates, directions. I thought I'd given Claude everything it needed. But I was prompting badly. The information I gave wasn't in the format Claude could actually use. So it did what it does — it tried to make it work anyway, with whatever it had. It went around and around, using up credits and time, producing things that weren't right. Not because it gave up. Because it never gives up.</p>
+        <p class="cs-p">I figured this out by reading the logs. Claude's annotations showed me it was looping — searching for a solution to information that wasn't there. If there were no logs, I would never have caught it. I would have kept waiting, kept spending credits, gotten further from the actual problem.</p>
+      </div>
+      <div class="cs-section">
+        <h2 class="cs-section-head">Key learnings</h2>
+        <p class="cs-p"><strong>Read the logs.</strong> They tell you what's actually happening, not what you think is happening.</p>
+        <p class="cs-p"><strong>Prompting badly costs more than prompting carefully.</strong> Stop, re-prompt, give better information. It saves time and credits.</p>
+        <p class="cs-p"><strong>If you don't know what format the AI needs — ask it.</strong> Ask Claude what information it needs, what sizes, what format. Don't guess and hope.</p>
+        <div class="cs-quote">
+          <p>"Claude works at full capacity toward whatever goal you give it. It doesn't stop and say the information was wrong."</p>
+          <cite>That changes how you prompt. Knowing this is the actual skill.</cite>
+        </div>
+      </div>
+      <div class="cs-section">
+        <h2 class="cs-section-head">Desktop looks great. Mobile doesn't. Font didn't export.</h2>
+        <p class="cs-p">Credits ran out before I could fix it. I'm okay with that. This was an exploration, not a product.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ PG 3: Relight ═══ -->
+  <div id="pg3" class="cs-page">
+    <div class="breadcrumb">
+      <span onclick="closePG()">AI Playground</span>
+      <span class="sep">/</span>
+      <span class="current">Relight</span>
+    </div>
+    <div class="cs-hero">
+      <div class="cs-hero-inner">
+        <div class="cs-tag">Figma AI · Image Editing</div>
+        <h1 class="cs-h1">Upload a photo.<br><em>Relight it.</em></h1>
+        <p class="cs-bluf">An image relighting tool built in Figma — upload a photo, add light, and see it change. Also the experiment that taught me clarity is not something AI can give you.</p>
+        <div class="cs-meta">
+          <div class="cs-meta-item"><span class="cs-meta-label">Built with</span><span class="cs-meta-val">Figma (AI-assisted)</span></div>
+          <div class="cs-meta-item"><span class="cs-meta-label">Status</span><span class="cs-meta-val">Not fully finished</span></div>
+          <div class="cs-meta-item"><span class="cs-meta-label">Live</span><span class="cs-meta-val"><a href="https://sound-visual-23642168.figma.site" target="_blank" style="color:var(--purple)">figma.site ↗</a></span></div>
+        </div>
+      </div>
+    </div>
+    <div class="cs-body fade-in">
+      <div class="cs-section">
+        <h2 class="cs-section-head">The idea is simple.</h2>
+        <p class="cs-p">You have a photo you already took, and you want to change how the light feels in it. You upload your image, then you have two things to work with. Basic editing — brightness, contrast, saturation, temperature, shadows — plus a set of presets. And then the main feature: adding light. You choose the light type — spotlight, soft light, or dim light. Pick a colour. Set the intensity, size, and blur. Then drag and drop it exactly where you want it on the image. Hold to compare with the original. Download when you're done.</p>
+      </div>
+      <div class="cs-section">
+        <h2 class="cs-section-head">First time building in Figma.<br><em>Not enough clarity going in.</em></h2>
+        <p class="cs-p">This was my first time building something this way in Figma. I wanted to try it — and the idea of simulating and placing light on a photo felt genuinely interesting to me. But I went in without enough clarity about what it should actually be. I had a vague direction: something about relighting. I didn't have a sharp picture of what I was making or who it was really for. So I built something. It worked in parts. It ran out of direction in the middle. And at the end, I looked at it and thought — cool experiment. Wrong thing.</p>
+      </div>
+      <div class="cs-section">
+        <h2 class="cs-section-head">AI can build what you want.<br><em>It can't want it for you.</em></h2>
+        <div class="cs-quote">
+          <p>"Vagueness in, vagueness out."</p>
+          <cite>Clarity is not something the tool brings. That's yours to have before you open anything.</cite>
+        </div>
+        <p class="cs-p">I also learned about image editing itself — how effects are named, how they stack, what the terminology actually means. I went in not knowing any of this. I came out with a working vocabulary for it. And I kept doing something I've started doing after every project: asking the AI what I could have done better. It always gives something useful.</p>
+      </div>
+      <div class="cs-section">
+        <h2 class="cs-section-head">Not fully finished. That's fine.</h2>
+        <p class="cs-p">I ran out of ideas partway through. The tool works, but it's not complete — some things aren't fully built out, and I'm not continuing it. It was an experiment. It taught me what I needed to know. That's enough.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════ RESUME PAGE ══════════════════════════════════ -->
+<div id="page-resume" class="page">
+  <div class="resume-section">
+    <div class="section-head fade-in" style="padding-bottom: 24px;">
+      <span class="section-label">Background</span>
+      <h2 class="section-title"><em>Resume</em></h2>
+    </div>
+    <div class="resume-inner fade-in">
+
+      <div class="resume-row">
+        <div class="resume-col-label">Experience</div>
+        <div class="resume-col-body">
+          <div class="resume-entry">
+            <h3>UI/UX Design Intern — NextUp Robotics</h3>
+            <div class="meta">Ahmedabad · 2024 · 4 months · Sole Designer</div>
+            <ul>
+              <li>Conducted a 26-finding heuristic audit across 3 core software modules (Nielsen 10 heuristics)</li>
+              <li>Redesigned the sequence/path-making feature — went from unused to a deployment engineer asking to test it on a live robot</li>
+              <li>Shipped a file management system redesign that resolved a catastrophic-severity UX failure</li>
+              <li>Redesigned the Behavior Tree UI and led usability testing with 5 interns (all completed in under 20 min)</li>
+              <li>Built an internal project management dashboard covering deployment tracking, procurement hub, and packing checklist</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="resume-row">
+        <div class="resume-col-label">Education</div>
+        <div class="resume-col-body">
+          <div class="resume-entry">
+            <h3>B.Des — Product Experience Design</h3>
+            <div class="meta">NIFT Gandhinagar · Fashion & Lifestyle Accessories Department · 2021–2025</div>
+          </div>
+          <div class="resume-entry">
+            <h3>UI Design Cohort</h3>
+            <div class="meta">Instructor: Rajat · 2024</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="resume-row">
+        <div class="resume-col-label">Skills</div>
+        <div class="resume-col-body">
+          <div class="skills-wrap">
+            <span class="skill-pill">Figma</span>
+            <span class="skill-pill">UX Research</span>
+            <span class="skill-pill">Heuristic Evaluation</span>
+            <span class="skill-pill">Interaction Design</span>
+            <span class="skill-pill">Design Systems</span>
+            <span class="skill-pill">Usability Testing</span>
+            <span class="skill-pill">Information Architecture</span>
+            <span class="skill-pill">Prototyping</span>
+            <span class="skill-pill">HTML / CSS</span>
+            <span class="skill-pill">Claude Code</span>
+            <span class="skill-pill">Figma Make</span>
+            <span class="skill-pill">AI-Assisted Workflows</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="resume-row">
+        <div class="resume-col-label">Projects</div>
+        <div class="resume-col-body">
+          <div class="resume-entry">
+            <h3>QUEST — Travel App (Academic)</h3>
+            <div class="meta">Group of 3 · Discovery → Hi-Fi</div>
+            <ul>
+              <li>20 in-depth user interviews, empathy mapping, 150+ concepts ideated</li>
+              <li>Problem reframe: from budget travel to trustworthy discovery</li>
+            </ul>
+          </div>
+          <div class="resume-entry">
+            <h3>AI Playground — Typo Tool, Duckie Wallpaper, Relight</h3>
+            <div class="meta">Self-initiated · Claude, Claude Code, Figma AI</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="resume-row">
+        <div class="resume-col-label">Contact</div>
+        <div class="resume-col-body">
+          <div class="resume-entry">
+            <p style="font-size:16px; color: var(--ink); line-height:1.8;">
+              Open to Product Designer roles at early-stage funded startups.<br>
+              Best reached by email — details available on request.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <footer>
+      <div class="footer-links">
+        <a onclick="showPage('work')">Work</a>
+        <a onclick="showPage('playground')">AI Playground</a>
+      </div>
+      <p>Made with intentionality by <strong>Disha Jain</strong> · 2025</p>
+    </footer>
+  </div>
+</div>
+
+<script>
+  // ─── STATE ───
+  let currentPage = 'home';
+  const pages = ['home', 'work', 'playground', 'resume'];
+  const dotLabels = ['Home', 'Work', 'Playground', 'Resume'];
+
+  // ─── INIT DOTS ───
+  const dotsContainer = document.getElementById('side-dots');
+  pages.forEach((p, i) => {
+    const dot = document.createElement('div');
+    dot.className = 'dot' + (p === 'home' ? ' active' : '');
+    dot.title = dotLabels[i];
+    dot.onclick = () => {
+      if (p === 'home') goHome();
+      else showPage(p);
+    };
+    dotsContainer.appendChild(dot);
+  });
+
+  function updateDots() {
+    document.querySelectorAll('.dot').forEach((d, i) => {
+      d.classList.toggle('active', pages[i] === currentPage);
+    });
+  }
+
+  function updateNav() {
+    const nav = document.getElementById('main-nav');
+    nav.className = currentPage === 'home' ? 'dark-nav' : '';
+    ['work','playground','resume'].forEach(p => {
+      document.getElementById('nav-' + p)?.classList.toggle('active', currentPage === p);
+    });
+  }
+
+  // ─── PAGE SWITCHING ───
+  function showPage(name) {
+    // close any open case study or playground page
+    document.querySelectorAll('.cs-page.open').forEach(el => el.classList.remove('open'));
+    // hide all cs-index / pg-index if switching away
+    const csIndex = document.getElementById('cs-index');
+    const pgIndex = document.getElementById('pg-index');
+    if (csIndex) csIndex.style.display = '';
+    if (pgIndex) pgIndex.style.display = '';
+
+    pages.forEach(p => {
+      const el = document.getElementById('page-' + p);
+      if (el) el.classList.toggle('active', p === name);
+    });
+    currentPage = name;
+    updateDots();
+    updateNav();
+    window.scrollTo(0, 0);
+  }
+
+  function goHome() {
+    showPage('home');
+  }
+
+  // ─── CASE STUDIES ───
+  function openCS(id) {
+    document.querySelectorAll('.cs-page').forEach(el => el.classList.remove('open'));
+    const target = document.getElementById(id);
+    if (target) {
+      target.classList.add('open');
+      // hide index
+      const idx = document.getElementById('cs-index');
+      if (idx) idx.style.display = 'none';
+    }
+    window.scrollTo(0, 0);
+    // add fade-in to body
+    target?.querySelector('.cs-body')?.classList.add('fade-in');
+  }
+
+  function closeCS() {
+    document.querySelectorAll('.cs-page.open').forEach(el => el.classList.remove('open'));
+    const idx = document.getElementById('cs-index');
+    if (idx) idx.style.display = '';
+    window.scrollTo(0, 0);
+  }
+
+  // ─── PLAYGROUND ───
+  function openPG(id) {
+    document.querySelectorAll('#page-playground .cs-page').forEach(el => el.classList.remove('open'));
+    const target = document.getElementById(id);
+    if (target) target.classList.add('open');
+    const idx = document.getElementById('pg-index');
+    if (idx) idx.style.display = 'none';
+    window.scrollTo(0, 0);
+  }
+
+  function closePG() {
+    document.querySelectorAll('#page-playground .cs-page').forEach(el => el.classList.remove('open'));
+    const idx = document.getElementById('pg-index');
+    if (idx) idx.style.display = '';
+    window.scrollTo(0, 0);
+  }
+
+  // ─── INTERSECTION OBSERVER for fade-in ───
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('fade-in');
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.cs-section, .resume-row, .card').forEach(el => observer.observe(el));
+
+  // initial
+  updateDots();
+  updateNav();
+</script>
+</body>
+</html>
