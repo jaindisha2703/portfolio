@@ -1,0 +1,230 @@
+HERO SECTION
+Relight
+An image relighting tool built in Figma , upload a photo, add light, and see it change. Also the experiment that taught me clarity is not something AI can give you.
+
+
+OVERVIEW CARD
+What it is: Image editing and relighting tool , upload a photo, adjust it, add custom lighting
+Built with: Figma (AI-assisted)
+Live link: https://sound-visual-23642168.figma.site
+Status: Not fully finished. Prototype video below.
+
+
+[ IMAGE/VIDEO: Video of the Relight prototype , showing the full flow: upload, edit, add light, drag and drop, preview ]
+
+
+
+
+SECTION 1 , WHAT IT DOES
+Upload a photo. Relight it.
+The idea is simple: you have a photo you already took, and you want to change how the light feels in it.
+You upload your image, then you have two things to work with. Basic editing , brightness, contrast, saturation, temperature, shadows , plus a set of presets. And then the main feature: adding light.
+You choose the light type , spotlight, soft light, or dim light. Pick a colour. Set the intensity, size, and blur. Then drag and drop it exactly where you want it on the image. Hold to compare with the original. Download when you're done.
+
+
+[ IMAGE/VIDEO: Screenshot , the light placement interface, showing a light being dragged onto an image ]
+[ IMAGE/VIDEO: Screenshot , the editing panel with brightness/contrast/saturation/temperature/shadows controls and presets ]
+
+
+
+
+SECTION 2 , HOW IT STARTED
+First time building in Figma. Not enough clarity going in.
+This was my first time building something this way in Figma. I wanted to try it , and the idea of simulating and placing light on a photo felt genuinely interesting to me.
+But I went in without enough clarity about what it should actually be. I had a vague direction: something about relighting. I didn't have a sharp picture of what I was making or who it was really for.
+So I built something. It worked in parts. It ran out of direction in the middle. And at the end, I looked at it and thought , cool experiment. Wrong thing.
+
+
+
+
+SECTION 3 , WHAT I LEARNED
+AI can build what you want. It can't want it for you.
+The biggest thing this project made clear: the AI is at full capacity the whole time. It will try to build whatever you point it at. But if you don't know what you're pointing at , it'll build that too. Vagueness in, vagueness out.
+Clarity is not something the tool brings. That's yours to have before you open anything.
+
+
+I also learned about image editing itself — how effects are named, how they stack, what the terminology actually means. I went in not knowing any of this. I came out with a working vocabulary for it. And In the mist of these experiments. At the end of the projects I keep asking AI what I could have done better. Which makes learning fast and easier.
+
+
+[ IMAGE/VIDEO: Screenshot , Relight showing a before/after comparison, or the 'hold to preview original' state ]
+
+
+
+
+SECTION 4 , HONEST NOTE
+Not fully finished. That's fine.
+I ran out of ideas partway through. The tool works, but it's not complete , some things aren't fully built out, and I'm not continuing it.
+It was an experiment. It taught me what I needed to know. That's enough.
+
+
+
+
+NOTES FOR SITE BUILDER
+, Third card in the AI Playground section. Same layout as Typo Tool and Duckie Wallpaper.
+, Live link: https://sound-visual-23642168.figma.site , can be linked from the card.
+, Hero video = prototype screen recording showing the full editing + light flow.
+, The punchline ('clarity is not something AI can give you') should be visually prominent , not buried.
+, Tone stays honest and casual. Don't clean it up into something polished.
+
+
+
+
+2. DUCKIE WALLPAPER , AI PLAYGROUND ENTRY
+Portfolio Website Text
+HERO SECTION
+Duckie Wallpaper (lol)
+An animated HTML wallpaper with 7 ducks, built with AI , and the project that taught me how to actually work with it.
+
+
+OVERVIEW CARD
+What it is: Animated HTML wallpaper , 7 ducks, each appearing with a message every 1.5 hours during working hours
+Built with: Claude
+Inspired by: Harin's Bangalore game design session + Neelesh's vibe-coded wallpaper
+Status: Wrapped. Prototype video below , not sharing the live version (there are bugs, and I'm choosing to leave them).
+
+
+[ IMAGE/VIDEO: Video of the Duckie Wallpaper prototype , showing the duck animation and message appearing on desktop ]
+
+
+
+
+SECTION 1 , WHAT I BUILT
+7 ducks. One every 1.5 hours. All day.
+I found 7 duck illustrations on Pinterest. Too cute to ignore.
+Each one pops up during working hours with a small message , every 1.5 hours, one at a time. They cycle through all 7, then restart the next working day.
+I also had Claude credits left, so I thought: why not.
+
+
+[ IMAGE/VIDEO: Screenshot , desktop view of the wallpaper showing one duck with its message ]
+[ IMAGE/VIDEO: Screenshot , showing all 7 ducks or the sequence layout ]
+
+
+
+
+SECTION 2 , WHERE IT STARTED
+I was curious about vectors and animation.
+I wanted to understand how individual vector elements could be brought together and animated. Could coding and AI actually do that? I didn't know. I wanted to find out.
+This was also the first time I actually went into the code and changed things myself , not just accepting whatever Claude produced. That part was new.
+
+
+
+
+SECTION 3 , WHAT WENT WRONG (AND WHAT I LEARNED FROM IT)
+Claude was spiralling. I couldn't see it , until I read the logs.
+I did all the hard work upfront: found the ducks, figured out positions, X to Y coordinates, directions. I thought I'd given Claude everything it needed.
+But I was prompting badly. The information I gave wasn't in the format Claude could actually use. So it did what it does , it tried to make it work anyway, with whatever it had. It went around and around, using up credits and time, producing things that weren't right. Not because it gave up. Because it never gives up.
+I figured this out by reading the logs. Claude's annotations showed me it was looping , searching for a solution to information that wasn't there. If there were no logs, I would never have caught it. I would have kept waiting, kept spending credits, gotten further from the actual problem.
+
+
+[ IMAGE/VIDEO: Screenshot of Claude's log or output showing the loop , or an annotated screenshot illustrating the spiralling behaviour ]
+
+
+There was also a moment with a base64 image , I removed a background from an illustration and gave it to Claude to add into the wallpaper. Something got miscommunicated. Claude embedded it as a base64 element but with a black background baked in. I spent a long time trying to fix it manually, not understanding what had happened, until I traced it back to the prompt.
+Claude always finds a way to get the task done. Right way or wrong way , it doesn't matter to it. That's its job. Making sure it has what it actually needs? That's mine.
+
+
+
+
+SECTION 4 , KEY LEARNINGS
+What I took from this
+Read the logs. They tell you what's actually happening, not what you think is happening.
+Prompting badly costs more than prompting carefully. Stop, re-prompt, give better information. It saves time and credits.
+If you don't know what format the AI needs , ask it. Ask Claude what information it needs, what sizes, what format. Don't guess and hope.
+Claude works at full capacity toward whatever goal you give it. It doesn't stop and say the information was wrong. It adapts and keeps going. Knowing that changes how you prompt.
+
+
+
+
+SECTION 5 , HONEST NOTE
+Desktop looks great. Mobile doesn't. Font didn't export.
+Credits ran out before I could fix it. I'm okay with that. This was an exploration, not a product.
+
+
+
+
+NOTES FOR SITE BUILDER
+, Second card in the AI Playground section. Same layout as Typo Tool card.
+, Hero video = prototype screen recording. No live link , intentional.
+, Image/video placeholders in red = add assets there.
+, The 'wrong way or right way' learning is the punchline. Don't bury it.
+, Tone is honest and a little casual. Keep it that way.
+
+
+
+
+
+
+3. TYPO TOOL , AI PLAYGROUND ENTRY
+Portfolio Website Text
+HERO SECTION
+Typo Tool
+A typography playground I built with AI , to learn, test, and document type in real UI contexts.
+
+
+OVERVIEW CARD
+What it is: A web tool for testing and documenting typography decisions
+Built with: Claude Code
+Time: 1 day
+Status: Shipped, wrapped. Not being continued.
+Live link: https://jaindisha2703-ship-it.github.io/typo-tool/
+
+
+[ IMAGE: Screenshot of the Typo Tool live , full browser view of the main playground interface ]
+
+
+
+
+SECTION 1 , WHY I MADE IT
+It started as documentation. It turned into a tool.
+I was learning about typography , trying to understand how typefaces actually behave in real UI, not just in theory. I was going to document my learnings in notes.
+Then I thought: what if I just built the thing I was trying to document? A space where I could actually test type in different contexts , display, body, UI components , and see how it felt rather than just reading about it.
+So I built it. One day. Using Claude Code.
+
+
+[ IMAGE: Screenshot of the Learnings section inside Typo Tool , showing one or two typography learnings documented ]
+
+
+
+
+SECTION 2 , WHAT THE TOOL DOES
+What you can do with it
+Test typefaces across different UI contexts , display headings, body copy, labels, UI components.
+Play with type combinations and see how they hold up in real layouts, not just abstract swatches.
+Save your explorations and document your thinking , classification (is this geometric, humanist, transitional?), where it could work, what it feels like.
+There's also a Resources section , links I used while researching, references that shaped how I was thinking about type.
+
+
+[ IMAGE: Screenshot showing the typography playground in action , typeface being tested in a UI context ]
+[ IMAGE: Screenshot of the Resources section ]
+
+
+
+
+SECTION 3 , HONEST REFLECTION
+It wasn't the right thing to build. That was the point.
+The UI isn't great. The UX isn't a proper MVP. In its current state, it's not particularly useful.
+I knew this while building it. I shipped it anyway , because the goal was never to build a polished product. It was to understand what AI tools like Claude Code can actually enable. How fast you can go from idea to something real.
+And for something built in a day, I think that's genuinely interesting in itself.
+But it also made something clear: I built something that didn't need to exist. I jumped into making without understanding the space, the use case, what already exists. That mistake , and noticing it , was worth more than finishing the tool.
+
+
+[ IMAGE: Screenshot showing a specific limitation or rough part of the tool , honest view of where it falls short ]
+
+
+
+
+SECTION 4 , KEY LEARNING
+When building becomes easy, thinking becomes the real skill.
+AI speeds things up. That part is real. But clarity still matters more than ever , maybe more than before, because now you can build fast enough that the cost of building the wrong thing is just... time you didn't need to lose.
+The lesson: explore deeply, understand the problem, understand the space, understand what already exists. Then build.
+I'm taking that forward.
+
+
+
+
+NOTES FOR SITE BUILDER
+, This is one card in the AI Playground section of the portfolio.
+, The tool should be embedded or linked directly from the card. Live link: https://jaindisha2703.github.io/typo-tool/
+, Image placeholders (red dashed boxes) = add screenshots there.
+, More AI Playground cards will follow with the same structure.
+, The honest reflection section is intentional , do not soften it.
